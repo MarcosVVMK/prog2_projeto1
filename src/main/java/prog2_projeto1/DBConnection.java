@@ -12,9 +12,9 @@ public class DBConnection {
 	private static DBConnection instance = null;
 	private Connection conn;
 
-	private String url = "jdbc:postgresql://localhost:5432/prog2";
+	private String url = "jdbc:postgresql://localhost:5432/aula1";
 	private String usuario = "postgres";
-	private String senha = "1234";
+	private String senha = "password";
 
 	private DBConnection() throws SQLException {
 		try {
