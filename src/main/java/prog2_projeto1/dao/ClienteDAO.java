@@ -44,7 +44,7 @@ public class ClienteDAO {
                 return false;
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error("Ocorreu um erro ao tentar salvar: " + e.getMessage());
             logger.error("--- Fim do método DAO Salvar ---");
             return false;
@@ -81,7 +81,7 @@ public class ClienteDAO {
                 return false;
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error("Ocorreu um erro ao tentar alterar: " + e.getMessage());
             logger.error("--- Fim do método DAO Alterar ---");
             return false;
@@ -110,16 +110,11 @@ public class ClienteDAO {
                 return false;
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error("Ocorreu um erro ao tentar excluir: " + e.getMessage());
             logger.error("--- Fim do método DAO Excluir ---");
             return false;
         }
-    }
-
-    public boolean buscar(Cliente cliente) throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
     }
 
     public List<Cliente> buscarTodos() throws SQLException {

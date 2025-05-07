@@ -1,15 +1,21 @@
 package prog2_projeto1.view;
 
-import prog2_projeto1.controller.ClienteController;
-import prog2_projeto1.model.Cliente;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
+import prog2_projeto1.controller.ClienteController;
+import prog2_projeto1.model.Cliente;
 
 public class ClienteView extends JFrame {
     private JTextField idField, nomeField, cpfField, rgField, telefoneField, referenciaField, dataNascimentoField;
@@ -20,11 +26,20 @@ public class ClienteView extends JFrame {
         clienteController = new ClienteController();
 
         setTitle("Gerenciamento de Clientes");
-        setSize(500, 400);
+        setSize(800, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(9, 2));
+        setLocationRelativeTo(null);
 
-        // Labels e campos de texto
+        JTabbedPane tabbedPane = new JTabbedPane();
+        add(tabbedPane);
+        
+        JPanel panelCadastro = new JPanel();
+        panelCadastro.setLayout(null);
+
+        JPanel panel = new JPanel();
+        add(panel);
+        panel.setLayout(null);
+
         add(new JLabel("ID:"));
         idField = new JTextField();
         add(idField);
@@ -57,6 +72,8 @@ public class ClienteView extends JFrame {
         buscarButton = new JButton("Buscar");
         deletarButton = new JButton("Deletar");
         limparButton = new JButton("Limpar Campos");
+
+        tabbedPane.addTab("Cadastro", panelCadastro);
 
         add(salvarButton);
         add(buscarButton);
@@ -158,6 +175,15 @@ public class ClienteView extends JFrame {
                 limparCampos();
             }
         });
+
+
+
+
+        JPanel painelTabela = new JPanel();
+
+
+
+
 
         setVisible(true);
     }

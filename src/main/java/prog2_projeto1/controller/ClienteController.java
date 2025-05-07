@@ -1,11 +1,13 @@
 package prog2_projeto1.controller;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.apache.log4j.Logger;
+
 import prog2_projeto1.dao.ClienteDAO;
 import prog2_projeto1.model.Cliente;
 
-import java.sql.SQLException;
-import java.util.List;
 
 public class ClienteController {
 
