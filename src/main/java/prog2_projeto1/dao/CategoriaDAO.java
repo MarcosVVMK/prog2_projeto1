@@ -55,12 +55,12 @@ public class CategoriaDAO {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String updatePessoa = "update categoria set nome = ?, cpf = ?, rg = ?, telefone = ?, referencia_comercial = ?, data_nascimento = ? where id = ?";
+            String updatePessoa = "update categoria set nome = ?, descricao = ? where id = ?";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(updatePessoa);
             preparedStatement1.setString(1, categoria.getNome());
             preparedStatement1.setString(2, categoria.getDescricao());
-            preparedStatement1.setInt(7, categoria.getId());
+            preparedStatement1.setInt(3, categoria.getId());
 
             logger.info("String update categoria preparada: " + preparedStatement1);
             int resultadoCategoria = preparedStatement1.executeUpdate();
