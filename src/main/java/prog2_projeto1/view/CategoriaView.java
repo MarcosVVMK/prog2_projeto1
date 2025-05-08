@@ -75,9 +75,9 @@ public class CategoriaView extends JFrame {
                 categoria.setDescricao(txtDescricao.getText());
                 boolean resultado = categoriaController.salvar(categoria);
                 if (resultado) {
-                    JOptionPane.showMessageDialog(btnSalvar, e, "Salvo", 0);
+                    JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Salvo", 1);
                 } else {
-                    JOptionPane.showMessageDialog(btnSalvar, e, "Erro ao salvar!", 1);
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar!", "Erro ao salvar!", 0);
                 }
             }
         });
@@ -117,9 +117,7 @@ public class CategoriaView extends JFrame {
                 Categoria categoria = new Categoria();
 
                 categoria.setId(Integer.parseInt(txtID.getText()));
-                categoria.setNome(txtNome.getText());
-                categoria.setDescricao(txtDescricao.getText());
-
+            
                 CategoriaController categoriaController = new CategoriaController();
                 
                 boolean resultado = categoriaController.excluir(categoria);

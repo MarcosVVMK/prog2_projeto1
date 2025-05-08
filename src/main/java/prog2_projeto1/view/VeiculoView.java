@@ -34,7 +34,6 @@ public class VeiculoView {
         JPanel panelCadastro = new JPanel();
 
         panelCadastro.setLayout(null);
-
         
         JLabel lblNome = new JLabel("Nome");
         lblNome.setBounds(10, 10, 150, 25);
