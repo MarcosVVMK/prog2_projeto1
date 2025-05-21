@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,14 +17,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import prog2_projeto1.controller.CategoriaController;
 import prog2_projeto1.controller.VeiculoController;
+import prog2_projeto1.model.Categoria;
 import prog2_projeto1.model.Veiculo;
 
 public class VeiculoView {
     public static void main(String[] args) {
         JFrame tela = new JFrame("Cadastro de Veículos");
         tela.setSize(800, 400);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setLocationRelativeTo(null);
 
         // Tab principal para adicionar abas
@@ -54,6 +57,36 @@ public class VeiculoView {
         JTextField txtAno = new JTextField();
         txtAno.setBounds(10, 80, 150, 25);
         panelCadastro.add(txtAno);
+
+        JLabel lblCategoriaDropdown = new JLabel("Categoria");
+        lblCategoriaDropdown.setBounds(170, 60, 100, 25);
+        panelCadastro.add(lblCategoriaDropdown);
+
+        CategoriaController categoriaController = new CategoriaController();
+
+        List<Categoria> categorias = categoriaController.buscarTodos();
+
+        JComboBox<Categoria> comboCategoria = new JComboBox<>();
+        for (Categoria categoria : categorias) {
+            comboCategoria.addItem(categoria);
+        }
+
+        // Set a custom renderer to display the category name
+        comboCategoria.setRenderer(new javax.swing.DefaultListCellRenderer() {
+            @Override
+            public java.awt.Component getListCellRendererComponent(
+                    javax.swing.JList<?> list, Object value, int index, 
+                    boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Categoria) {
+                    setText(((Categoria) value).getNome());
+                }
+                return this;
+            }
+        });
+        
+        comboCategoria.setBounds(170, 80, 150, 25);
+        panelCadastro.add(comboCategoria);
 
         JLabel lblModelo = new JLabel("Modelo");
         lblModelo.setBounds(10, 110, 250, 25);
@@ -107,20 +140,18 @@ public class VeiculoView {
 
                 veiculo.setNome(txtNome.getText());
                 veiculo.setAno(Integer.parseInt(txtAno.getText()));
-                veiculo.setModelo(txtModelo.getText());
-                veiculo.setCor(txtCor.getText());
-                veiculo.setPlaca(txtPlaca.getText());
-                veiculo.setUnicoDono(true);
+            veiculo.setUnicoDono(true);
+            veiculo.setCategoria((Categoria) comboCategoria.getSelectedItem());
 
-                VeiculoController veiculoController = new VeiculoController();
+            VeiculoController veiculoController = new VeiculoController();
                 
-                boolean resultado = veiculoController.salvar(veiculo);
-                if (resultado) {
-                    JOptionPane.showMessageDialog(tela, "Veículo salvo com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(tela, "Erro ao salvar veículo!", "Erro",
-                            JOptionPane.ERROR_MESSAGE);
-                }
+            boolean resultado = veiculoController.salvar(veiculo);
+            if (resultado) {
+                JOptionPane.showMessageDialog(tela, "Veículo salvo com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(tela, "Erro ao salvar veículo!", "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+            }
 
             }
         });

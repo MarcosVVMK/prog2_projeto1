@@ -8,6 +8,7 @@ public class Veiculo {
     private String cor;
     private String placa;
     private boolean unicoDono;
+    private Categoria categoria;
 
     /**
      * @param id
@@ -18,14 +19,15 @@ public class Veiculo {
      * @param placa
      * @param unicoDono
      */
-    public Veiculo(int id, String nome, int ano, String modelo, String cor, String placa, boolean unicoDono) {
-        this.id = id;
-        this.nome = nome;
-        this.ano = ano;
-        this.modelo = modelo;
-        this.cor = cor;
-        this.placa = placa;
-        this.unicoDono = unicoDono;
+    public Veiculo(int id, String nome, int ano, String modelo, String cor, String placa, boolean unicoDono, Categoria categoria) {
+        this.id         = id;
+        this.nome       = nome;
+        this.ano        = ano;
+        this.modelo     = modelo;
+        this.cor        = cor;
+        this.placa      = placa;
+        this.unicoDono  = unicoDono;
+        this.categoria  = categoria;
     }
 
     /**
@@ -132,4 +134,11 @@ public class Veiculo {
         this.id = id;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

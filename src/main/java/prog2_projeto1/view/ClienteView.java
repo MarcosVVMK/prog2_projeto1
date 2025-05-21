@@ -27,7 +27,7 @@ public class ClienteView extends JFrame {
 
         setTitle("Gerenciamento de Clientes");
         setSize(800, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JTabbedPane tabbedPane = new JTabbedPane();

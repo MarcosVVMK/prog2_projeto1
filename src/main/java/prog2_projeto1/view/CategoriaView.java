@@ -18,7 +18,7 @@ public class CategoriaView extends JFrame {
     
         JFrame tela = new JFrame("Cadastro de Categoria");
         tela.setSize(800, 400);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
