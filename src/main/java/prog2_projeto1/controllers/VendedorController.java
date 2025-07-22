@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import prog2_projeto1.DAOs.VendedorDAO;
+import prog2_projeto1.DAO.VendedorDAO;
 import prog2_projeto1.models.Vendedor;
 
 public class VendedorController {

@@ -1,4 +1,4 @@
-package prog2_projeto1.DAOs;
+package prog2_projeto1.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

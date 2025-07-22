@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import prog2_projeto1.DAOs.CategoriaDAO;
+import prog2_projeto1.DAO.CategoriaDAO;
 import prog2_projeto1.models.Categoria;
 
 public class CategoriaController {

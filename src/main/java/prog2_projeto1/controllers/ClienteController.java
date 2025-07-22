@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import prog2_projeto1.DAOs.ClienteDAO;
+import prog2_projeto1.DAO.ClienteDAO;
 import prog2_projeto1.models.Cliente;
 
 

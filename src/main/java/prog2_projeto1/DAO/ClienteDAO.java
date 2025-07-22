@@ -1,8 +1,4 @@
-package prog2_projeto1.DAOs;
-
-import org.apache.log4j.Logger;
-import prog2_projeto1.DBConnection;
-import prog2_projeto1.models.Cliente;
+package prog2_projeto1.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import prog2_projeto1.DBConnection;
+import prog2_projeto1.models.Cliente;
 
 public class ClienteDAO {
     Logger logger = Logger.getLogger(ClienteDAO.class);
@@ -29,8 +30,8 @@ public class ClienteDAO {
             preparedStatement1.setString(2, cliente.getCpf());
             preparedStatement1.setString(3, cliente.getRg());
             preparedStatement1.setString(4, cliente.getTelefone());
-            preparedStatement1.setString(5, cliente.getReferencia_comercial());
-            preparedStatement1.setDate(6, cliente.getData_nascimento());
+            preparedStatement1.setString(5, cliente.getReferenciaComercial());
+            preparedStatement1.setDate(6, cliente.getDataNascimento());
             logger.info("String insert Cliente preparada: " + preparedStatement1);
             int resultado = preparedStatement1.executeUpdate();
 
@@ -64,8 +65,8 @@ public class ClienteDAO {
             preparedStatement1.setString(2, cliente.getCpf());
             preparedStatement1.setString(3, cliente.getRg());
             preparedStatement1.setString(4, cliente.getTelefone());
-            preparedStatement1.setString(5, cliente.getReferencia_comercial());
-            preparedStatement1.setDate(6, cliente.getData_nascimento());
+            preparedStatement1.setString(5, cliente.getReferenciaComercial());
+            preparedStatement1.setDate(6, cliente.getDataNascimento());
             preparedStatement1.setInt(7, cliente.getId());
 
             logger.info("String update cliente preparada: " + preparedStatement1);
@@ -124,7 +125,7 @@ public class ClienteDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String consulta = "select * from cliente";
-            List<Cliente> lista = new ArrayList<Cliente>();
+            List<Cliente> lista = new ArrayList<>();
             Cliente cliente;
 
             PreparedStatement preparedStatement = connection.prepareStatement(consulta);
@@ -138,8 +139,8 @@ public class ClienteDAO {
                 cliente.setCpf(resultSet.getString("CPF"));
                 cliente.setRg(resultSet.getString("RG"));
                 cliente.setTelefone(resultSet.getString("telefone"));
-                cliente.setReferencia_comercial(resultSet.getString("referencia_comercial"));
-                cliente.setData_nascimento(resultSet.getDate("data_nascimento"));
+                cliente.setReferenciaComercial(resultSet.getString("referencia_comercial"));
+                cliente.setDataNascimento(resultSet.getDate("data_nascimento"));
 
                 lista.add(cliente);
             }
@@ -176,8 +177,8 @@ public class ClienteDAO {
                 cliente.setCpf(resultSet.getString("CPF"));
                 cliente.setRg(resultSet.getString("RG"));
                 cliente.setTelefone(resultSet.getString("telefone"));
-                cliente.setReferencia_comercial(resultSet.getString("referencia_comercial"));
-                cliente.setData_nascimento(resultSet.getDate("data_nascimento"));
+                cliente.setReferenciaComercial(resultSet.getString("referencia_comercial"));
+                cliente.setDataNascimento(resultSet.getDate("data_nascimento"));
             }
 
             logger.info("--- Fim do método DAO Buscar por Id ---");

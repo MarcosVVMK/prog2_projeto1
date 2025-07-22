@@ -28,7 +28,8 @@ O projeto adota o padrão **MVCDAO** (Model-View-Controller com Data Access Obje
 - **DAO:** Camada de persistência (simulada ou com banco)
 - **View:** Interface com o usuário (console ou GUI, dependendo da implementação)
 - **Controller:** Coordena as interações entre View e Model
-
+- **Util:** Camada com as classes abstratas
+- **Interface:** Camada de Interface das classes
 ---
 
 ## 🧩 Diagrama de Classes

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import prog2_projeto1.DAOs.VeiculoDAO;
+import prog2_projeto1.DAO.VeiculoDAO;
 import prog2_projeto1.models.Veiculo;
 
 public class VeiculoController {

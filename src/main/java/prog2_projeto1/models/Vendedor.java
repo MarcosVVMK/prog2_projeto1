@@ -2,7 +2,7 @@ package prog2_projeto1.models;
 
 import java.util.Date;
 
-import prog2_projeto1.abstracts.PessoaFisica;
+import prog2_projeto1.utils.PessoaFisica;
 
 public class Vendedor extends PessoaFisica {
     private Double salario;

@@ -1,4 +1,4 @@
-package prog2_projeto1.DAOs;
+package prog2_projeto1.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ public class VeiculoDAO {
             preparedStatement1.setString(3, modelo.getModelo());
             preparedStatement1.setString(4, modelo.getCor());
             preparedStatement1.setString(5, modelo.getPlaca());
-            preparedStatement1.setBoolean(6, modelo.isUnicoDono() ? true : false);
+            preparedStatement1.setBoolean(6, modelo.isUnicoDono());
             logger.info("String insert Veículo preparada: " + preparedStatement1);
             int resultado = preparedStatement1.executeUpdate();
 
@@ -66,7 +66,7 @@ public class VeiculoDAO {
             preparedStatement1.setString(3, modelo.getModelo());
             preparedStatement1.setString(4, modelo.getCor());
             preparedStatement1.setString(5, modelo.getPlaca());
-            preparedStatement1.setBoolean(6, modelo.isUnicoDono() ? true : false);
+            preparedStatement1.setBoolean(6, modelo.isUnicoDono());
             preparedStatement1.setInt(7, modelo.getId());
 
             logger.info("String update veículo preparada: " + preparedStatement1);

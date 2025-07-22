@@ -2,13 +2,19 @@ package prog2_projeto1.views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import prog2_projeto1.controllers.CategoriaController;
 import prog2_projeto1.models.Categoria;
@@ -21,49 +27,53 @@ public class CategoriaView extends JFrame {
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tela.setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        tela.add(panel);
-        panel.setLayout(null);
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tela.add(tabbedPane);
+
+        JPanel panelCadastro = new JPanel();
+        panelCadastro.setLayout(null);
+
+        tabbedPane.addTab("Cadastro", panelCadastro);
 
         JLabel lblID = new JLabel("ID");
-        lblID.setBounds(10, 10, 150, 25);
-        panel.add(lblID);
+        lblID.setBounds(10, 10, 100, 25);
+        panelCadastro.add(lblID);
 
         JTextField txtID = new JTextField();
         txtID.setBounds(10, 30, 100, 25);
-        panel.add(txtID);
+        panelCadastro.add(txtID);
 
         JLabel lblNome = new JLabel("Nome");
         lblNome.setBounds(10, 60, 150, 25);
-        panel.add(lblNome);
+        panelCadastro.add(lblNome);
 
         JTextField txtNome = new JTextField();
         txtNome.setBounds(10, 80, 100, 25);
-        panel.add(txtNome);
+        panelCadastro.add(txtNome);
 
         JLabel lblDescricao = new JLabel("Descricao");
         lblDescricao.setBounds(10, 100, 250, 25);
-        panel.add(lblDescricao);
+        panelCadastro.add(lblDescricao);
 
         JTextField txtDescricao = new JTextField();
         txtDescricao.setBounds(10, 120, 250, 25);
-        panel.add(txtDescricao);
+        panelCadastro.add(txtDescricao);
 
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.setBounds(10, 280, 150, 25);
-        panel.add(btnSalvar);
+        panelCadastro.add(btnSalvar);
 
         JButton btnAlterar = new JButton("Alterar");
         btnAlterar.setBounds(170, 280, 150, 25);
-        panel.add(btnAlterar);
+        panelCadastro.add(btnAlterar);
 
         JButton btnExcluir = new JButton("Excluir");
         btnExcluir.setBounds(340, 280, 150, 25);
-        panel.add(btnExcluir);
+        panelCadastro.add(btnExcluir);
 
         JButton btnLimparCampos = new JButton("Limpar Campos");
         btnLimparCampos.setBounds(510, 280, 150, 25);
-        panel.add(btnLimparCampos);
+        panelCadastro.add(btnLimparCampos);
 
         btnSalvar.addActionListener(new ActionListener() {
 
@@ -80,12 +90,6 @@ public class CategoriaView extends JFrame {
                     JOptionPane.showMessageDialog(null, "Erro ao salvar!", "Erro ao salvar!", 0);
                 }
             }
-        });
-
-        btnLimparCampos.addActionListener(e -> {
-            txtID.setText("");
-            txtNome.setText("");
-            txtDescricao.setText("");
         });
 
         btnAlterar.addActionListener(new ActionListener() {
@@ -129,6 +133,56 @@ public class CategoriaView extends JFrame {
                 }
             }
         });
+
+        btnLimparCampos.addActionListener(e -> {
+            txtID.setText("");
+            txtNome.setText("");
+            txtDescricao.setText("");
+        });
+
+         // Aba 2 - Listagem de Categorias
+        JPanel panelTabela = new JPanel();
+
+        panelTabela.setLayout(new BoxLayout(panelTabela, BoxLayout.Y_AXIS));
+
+        String[] colunas = { "ID", "Nome", "Descrição" };
+        DefaultTableModel modeloTabela = new DefaultTableModel(colunas, 0);
+        JTable tabela = new JTable(modeloTabela);
+        tabela.setDefaultEditor(Object.class, null);
+        JScrollPane scrollPane = new JScrollPane(tabela);
+        panelTabela.add(scrollPane);
+
+        tabbedPane.addChangeListener(e -> {
+            int selectedIndex = tabbedPane.getSelectedIndex();
+            String selectedTitle = tabbedPane.getTitleAt(selectedIndex);
+
+            if ("Lista de Categorias".equals(selectedTitle)) {
+                modeloTabela.setRowCount(0);
+                CategoriaController categoriaController = new CategoriaController();
+                List<Categoria> categorias = categoriaController.buscarTodos();
+                for (Categoria v : categorias) {
+                    modeloTabela.addRow(new Object[] {
+                            v.getId(), v.getNome(), v.getDescricao()
+                    });
+                }
+            }
+        });
+
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int linha = tabela.getSelectedRow();
+
+                    txtID.setText(tabela.getValueAt(linha, 0).toString());
+                    txtNome.setText(tabela.getValueAt(linha, 1).toString());
+                    txtDescricao.setText(tabela.getValueAt(linha, 2).toString());
+                    tabbedPane.setSelectedIndex(0);
+                }
+            }
+        });
+
+        // Adiciona o panelTabela ao tabbedPane
+        tabbedPane.addTab("Lista de Categorias", panelTabela);
 
         tela.setVisible(true);
     }

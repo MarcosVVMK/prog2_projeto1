@@ -14,7 +14,7 @@ public class MainView  extends JFrame{
     public MainView(){
         setTitle("Emprestimo de Veiculos");
         setSize(600, 400);
-        setExtendedState(MAXIMIZED_BOTH);
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -29,9 +29,9 @@ public class MainView  extends JFrame{
 
         JSeparator separator = new JSeparator();
 
-        menuCadastro.add(itemVeiculo);
-        menuCadastro.add(separator);
         menuCadastro.add(itemCategoria);
+        menuCadastro.add(separator);
+        menuCadastro.add(itemVeiculo);
 
         menuRelatorios.add(itemRel1);
         menuRelatorios.add(itemRel2);

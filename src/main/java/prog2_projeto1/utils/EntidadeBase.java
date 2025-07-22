@@ -1,4 +1,4 @@
-package prog2_projeto1.abstracts;
+package prog2_projeto1.utils;
 
 import java.util.Date;
 import java.util.List;

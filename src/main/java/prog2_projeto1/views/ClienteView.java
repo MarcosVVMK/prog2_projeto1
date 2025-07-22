@@ -98,15 +98,15 @@ public class ClienteView extends JFrame {
                         }
                     }
 
-                    Cliente cliente = new Cliente(
-                            id,
-                            nomeField.getText(),
-                            cpfField.getText(),
-                            rgField.getText(),
-                            telefoneField.getText(),
-                            referenciaField.getText(),
-                            dataNascimento
-                    );
+                    Cliente cliente = new Cliente();
+                    
+                    cliente.setId(id);
+                    cliente.setNome(nomeField.getText());
+                    cliente.setCpf(cpfField.getText());
+                    cliente.setRg(rgField.getText());
+                    cliente.setTelefone(telefoneField.getText());
+                    cliente.setReferenciaComercial(referenciaField.getText());
+                    cliente.setDataNascimento(dataNascimento);
 
                     if (clienteController.salvar(cliente)) {
                         JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso!");
@@ -131,10 +131,10 @@ public class ClienteView extends JFrame {
                         cpfField.setText(cliente.getCpf());
                         rgField.setText(cliente.getRg());
                         telefoneField.setText(cliente.getTelefone());
-                        referenciaField.setText(cliente.getReferencia_comercial());
+                        referenciaField.setText(cliente.getReferenciaComercial());
 
-                        if (cliente.getData_nascimento() != null) {
-                            dataNascimentoField.setText(cliente.getData_nascimento().toString());
+                        if (cliente.getDataNascimento() != null) {
+                            dataNascimentoField.setText(cliente.getDataNascimento().toString());
                         } else {
                             dataNascimentoField.setText("");
                         }

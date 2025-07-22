@@ -3,7 +3,7 @@ package prog2_projeto1.models;
 
 import java.sql.Date;
 
-import prog2_projeto1.abstracts.PessoaFisica;
+import prog2_projeto1.utils.PessoaFisica;
 
 public class Cliente extends PessoaFisica {
     
