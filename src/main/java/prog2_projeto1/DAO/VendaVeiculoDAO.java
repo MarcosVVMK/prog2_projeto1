@@ -10,8 +10,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import prog2_projeto1.DBConnection;
-import prog2_projeto1.models.VendaVeiculo;
+import prog2_projeto1.models.Cliente;
 import prog2_projeto1.models.Veiculo;
+import prog2_projeto1.models.VendaVeiculo;
 import prog2_projeto1.models.Vendedor;
 
 public class VendaVeiculoDAO {
@@ -24,15 +25,16 @@ public class VendaVeiculoDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertVendaVeiculo = "INSERT INTO venda_veiculo " +
-                    "(veiculo_id, vendedor_id, data_venda, valor_desconto, valor_final) " +
-                    "values (?, ?, ?, ?, ?)";
+                    "(veiculo_id, cliente_id, vendedor_id, data_venda, valor_desconto, valor_final) " +
+                    "values (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertVendaVeiculo);
             preparedStatement1.setInt(1, vendaVeiculo.getVeiculo().getId());
-            preparedStatement1.setInt(2, vendaVeiculo.getVendedor().getId());
-            preparedStatement1.setDate(3, java.sql.Date.valueOf(vendaVeiculo.getDataVenda()));
-            preparedStatement1.setDouble(4, vendaVeiculo.getValorDesconto());
-            preparedStatement1.setDouble(5, vendaVeiculo.getValorFinal());
+            preparedStatement1.setInt(2, vendaVeiculo.getCliente().getId());
+            preparedStatement1.setInt(3, vendaVeiculo.getVendedor().getId());
+            preparedStatement1.setDate(4, java.sql.Date.valueOf(vendaVeiculo.getDataVenda()));
+            preparedStatement1.setDouble(5, vendaVeiculo.getValorDesconto());
+            preparedStatement1.setDouble(6, vendaVeiculo.getValorFinal());
 
             logger.info("String insert VendaVeiculo preparada: " + preparedStatement1);
             int resultado = preparedStatement1.executeUpdate();
@@ -59,15 +61,16 @@ public class VendaVeiculoDAO {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String updateVendaVeiculo = "UPDATE venda_veiculo SET veiculo_id = ?, vendedor_id = ?, data_venda = ?, valor = ? WHERE id = ?";
+            String updateVendaVeiculo = "UPDATE venda_veiculo SET veiculo_id = ?, cliente_id = ?, vendedor_id = ?, data_venda = ?, valor_desconto = ?, valor_final = ? WHERE id = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(updateVendaVeiculo);
             preparedStatement.setInt(1, vendaVeiculo.getVeiculo().getId());
-            preparedStatement.setInt(2, vendaVeiculo.getVendedor().getId());
-            preparedStatement.setDate(3, java.sql.Date.valueOf(vendaVeiculo.getDataVenda()));
-            preparedStatement.setDouble(4, vendaVeiculo.getValorDesconto());
-            preparedStatement.setDouble(5, vendaVeiculo.getValorFinal());
-            preparedStatement.setInt(6, vendaVeiculo.getId());
+            preparedStatement.setInt(2, vendaVeiculo.getCliente().getId());
+            preparedStatement.setInt(3, vendaVeiculo.getVendedor().getId());
+            preparedStatement.setDate(4, java.sql.Date.valueOf(vendaVeiculo.getDataVenda()));
+            preparedStatement.setDouble(5, vendaVeiculo.getValorDesconto());
+            preparedStatement.setDouble(6, vendaVeiculo.getValorFinal());
+            preparedStatement.setInt(7, vendaVeiculo.getId());
 
             logger.info("String update VendaVeiculo preparada: " + preparedStatement);
             int resultado = preparedStatement.executeUpdate();
@@ -132,6 +135,7 @@ public class VendaVeiculoDAO {
             logger.info("Consulta executada: " + preparedStatement);
 
             VeiculoDAO veiculoDAO = new VeiculoDAO();
+            ClienteDAO clienteDAO = new ClienteDAO();
             VendedorDAO vendedorDAO = new VendedorDAO();
             
             while (resultSet.next()) {
@@ -139,9 +143,11 @@ public class VendaVeiculoDAO {
                 vendaVeiculo.setId(resultSet.getInt("id"));
                 
                 Veiculo veiculo = veiculoDAO.buscar(resultSet.getInt("veiculo_id"));
+                Cliente cliente = clienteDAO.buscar(resultSet.getInt("cliente_id"));
                 Vendedor vendedor = vendedorDAO.buscar(resultSet.getInt("vendedor_id"));
                 
                 vendaVeiculo.setVeiculo(veiculo);
+                vendaVeiculo.setCliente(cliente);
                 vendaVeiculo.setVendedor(vendedor);
                 vendaVeiculo.setDataVenda(resultSet.getDate("data_venda").toLocalDate());
                 vendaVeiculo.setValorDesconto(resultSet.getDouble("valor_desconto"));
@@ -176,6 +182,7 @@ public class VendaVeiculoDAO {
 
             VendaVeiculo vendaVeiculo = null;
             VeiculoDAO veiculoDAO = new VeiculoDAO();
+            ClienteDAO clienteDAO = new ClienteDAO();
             VendedorDAO vendedorDAO = new VendedorDAO();
             
             if (resultSet.next()) {
@@ -183,9 +190,11 @@ public class VendaVeiculoDAO {
                 vendaVeiculo.setId(resultSet.getInt("id"));
                 
                 Veiculo veiculo = veiculoDAO.buscar(resultSet.getInt("veiculo_id"));
+                Cliente cliente = clienteDAO.buscar(resultSet.getInt("cliente_id"));
                 Vendedor vendedor = vendedorDAO.buscar(resultSet.getInt("vendedor_id"));
                 
                 vendaVeiculo.setVeiculo(veiculo);
+                vendaVeiculo.setCliente(cliente);
                 vendaVeiculo.setVendedor(vendedor);
                 vendaVeiculo.setDataVenda(resultSet.getDate("data_venda").toLocalDate());
                 vendaVeiculo.setValorDesconto(resultSet.getDouble("valor_desconto"));
