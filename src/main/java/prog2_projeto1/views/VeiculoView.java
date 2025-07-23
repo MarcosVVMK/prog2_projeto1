@@ -140,18 +140,21 @@ public class VeiculoView {
 
                 veiculo.setNome(txtNome.getText());
                 veiculo.setAno(Integer.parseInt(txtAno.getText()));
-            veiculo.setUnicoDono(true);
-            veiculo.setCategoria((Categoria) comboCategoria.getSelectedItem());
+                veiculo.setUnicoDono(true);
+                veiculo.setCategoria((Categoria) comboCategoria.getSelectedItem());
+                veiculo.setModelo(txtModelo.getText());
+                veiculo.setCor(txtCor.getText());
+                veiculo.setPlaca(txtPlaca.getText());
 
-            VeiculoController veiculoController = new VeiculoController();
-                
-            boolean resultado = veiculoController.salvar(veiculo);
-            if (resultado) {
-                JOptionPane.showMessageDialog(tela, "Veículo salvo com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(tela, "Erro ao salvar veículo!", "Erro",
-                        JOptionPane.ERROR_MESSAGE);
-            }
+                VeiculoController veiculoController = new VeiculoController();
+                    
+                boolean resultado = veiculoController.salvar(veiculo);
+                if (resultado) {
+                    JOptionPane.showMessageDialog(tela, "Veículo salvo com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(tela, "Erro ao salvar veículo!", "Erro",
+                            JOptionPane.ERROR_MESSAGE);
+                }
 
             }
         });
