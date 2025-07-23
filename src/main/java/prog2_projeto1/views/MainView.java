@@ -12,7 +12,7 @@ import javax.swing.SwingUtilities;
 
 public class MainView  extends JFrame{
     public MainView(){
-        setTitle("Emprestimo de Veiculos");
+        setTitle("Venda de Veiculos");
         setSize(600, 400);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,15 +20,12 @@ public class MainView  extends JFrame{
 
         JMenuBar menuBar            = new JMenuBar();
         JMenu menuCadastro          = new JMenu("Cadastros");
-        JMenu menuRelatorios        = new JMenu("Relatórios");
 
         JMenuItem itemVeiculo       = new JMenuItem("Veículos");
         JMenuItem itemCategoria     = new JMenuItem("Categorias");
         JMenuItem itemCliente       = new JMenuItem("Clientes");
         JMenuItem itemVendedor      = new JMenuItem("Vendedores");
         JMenuItem itemVendaVeiculo  = new JMenuItem("Vendas");
-        JMenuItem itemRel1          = new JMenuItem("Relatório 1");
-        JMenuItem itemRel2          = new JMenuItem("Relatório 2");
 
         JSeparator separator = new JSeparator();
 
@@ -42,11 +39,7 @@ public class MainView  extends JFrame{
         menuCadastro.add(separator);
         menuCadastro.add(itemVendaVeiculo);
 
-        menuRelatorios.add(itemRel1);
-        menuRelatorios.add(itemRel2);
-
         menuBar.add(menuCadastro);
-        menuBar.add(menuRelatorios);
 
         setJMenuBar(menuBar);
 
