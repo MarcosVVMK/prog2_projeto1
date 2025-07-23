@@ -1,5 +1,7 @@
 package prog2_projeto1.models;
 
+import java.time.LocalDate;
+
 public class VendaVeiculo {
 
     private int id;
@@ -8,9 +10,9 @@ public class VendaVeiculo {
     private Vendedor vendedor;
     private double valorDesconto;
     private double valorFinal;
-    private String dataVenda;
+    private LocalDate dataVenda;
 
-    public VendaVeiculo(int id, Veiculo veiculo, Cliente cliente, Vendedor vendedor, double valorDesconto, double valorFinal, String dataVenda) {
+    public VendaVeiculo(int id, Veiculo veiculo, Cliente cliente, Vendedor vendedor, double valorDesconto, double valorFinal, LocalDate dataVenda) {
         this.id            = id;
         this.veiculo       = veiculo;
         this.cliente       = cliente;
@@ -64,11 +66,11 @@ public class VendaVeiculo {
         this.valorFinal = valorFinal;
     }
 
-    public String getDataVenda() {
+    public LocalDate getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(String dataVenda) {
+    public void setDataVenda(LocalDate dataVenda) {
         this.dataVenda = dataVenda;
     }
     

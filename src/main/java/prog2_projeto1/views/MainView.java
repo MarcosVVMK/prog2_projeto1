@@ -18,20 +18,29 @@ public class MainView  extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JMenuBar menuBar        = new JMenuBar();
-        JMenu menuCadastro      = new JMenu("Cadastros");
-        JMenu menuRelatorios    = new JMenu("Relatórios");
+        JMenuBar menuBar            = new JMenuBar();
+        JMenu menuCadastro          = new JMenu("Cadastros");
+        JMenu menuRelatorios        = new JMenu("Relatórios");
 
-        JMenuItem itemVeiculo   = new JMenuItem("Veículos");
-        JMenuItem itemCategoria = new JMenuItem("Categorias");
-        JMenuItem itemRel1      = new JMenuItem("Relatório 1");
-        JMenuItem itemRel2      = new JMenuItem("Relatório 2");
+        JMenuItem itemVeiculo       = new JMenuItem("Veículos");
+        JMenuItem itemCategoria     = new JMenuItem("Categorias");
+        JMenuItem itemCliente       = new JMenuItem("Clientes");
+        JMenuItem itemVendedor      = new JMenuItem("Vendedores");
+        JMenuItem itemVendaVeiculo  = new JMenuItem("Vendas");
+        JMenuItem itemRel1          = new JMenuItem("Relatório 1");
+        JMenuItem itemRel2          = new JMenuItem("Relatório 2");
 
         JSeparator separator = new JSeparator();
 
         menuCadastro.add(itemCategoria);
         menuCadastro.add(separator);
         menuCadastro.add(itemVeiculo);
+        menuCadastro.add(separator);
+        menuCadastro.add(itemCliente);
+        menuCadastro.add(separator);
+        menuCadastro.add(itemVendedor);
+        menuCadastro.add(separator);
+        menuCadastro.add(itemVendaVeiculo);
 
         menuRelatorios.add(itemRel1);
         menuRelatorios.add(itemRel2);
@@ -50,6 +59,24 @@ public class MainView  extends JFrame{
         itemCategoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 CategoriaView.main(null);
+            }
+        });
+
+        itemCliente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ClienteView.main(null);
+            }
+        });
+
+        itemVendedor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                VendedorView.main(null);
+            }
+        });
+
+        itemVendaVeiculo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                VendaVeiculoView.main(null);
             }
         });
     }
