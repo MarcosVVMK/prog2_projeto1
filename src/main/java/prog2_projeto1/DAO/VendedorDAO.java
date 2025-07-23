@@ -22,14 +22,15 @@ public class VendedorDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertVendedor = "INSERT INTO vendedor " +
-                    "(nome, cpf, salario, telefone) " +
-                    "values (?, ?, ?, ?)";
+                    "(nome, cpf, salario, telefone, comissao) " +
+                    "values (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertVendedor);
             preparedStatement1.setString(1, vendedor.getNome());
             preparedStatement1.setString(2, vendedor.getCpf());
             preparedStatement1.setDouble(3, vendedor.getSalario());
             preparedStatement1.setString(4, vendedor.getTelefone());
+            preparedStatement1.setDouble(5, vendedor.getComissao());
             logger.info("String insert Vendedor preparada: " + preparedStatement1);
             int resultado = preparedStatement1.executeUpdate();
 
@@ -55,14 +56,15 @@ public class VendedorDAO {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String updatePessoa = "update vendedor set nome = ?, cpf = ?, salario = ?, telefone = ? where id = ?";
+            String updatePessoa = "update vendedor set nome = ?, cpf = ?, salario = ?, telefone = ?, comissao = ? where id = ?";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(updatePessoa);
             preparedStatement1.setString(1, vendedor.getNome());
             preparedStatement1.setString(2, vendedor.getCpf());
             preparedStatement1.setDouble(3, vendedor.getSalario());
             preparedStatement1.setString(4, vendedor.getTelefone());
-            preparedStatement1.setInt(5, vendedor.getId());
+            preparedStatement1.setDouble(5, vendedor.getComissao());
+            preparedStatement1.setInt(6, vendedor.getId());
 
             logger.info("String update vendedor preparada: " + preparedStatement1);
             int resultadoVendedor = preparedStatement1.executeUpdate();
@@ -132,6 +134,7 @@ public class VendedorDAO {
                 vendedor.setCpf(resultSet.getString("CPF"));
                 vendedor.setSalario(resultSet.getDouble("salario"));
                 vendedor.setTelefone(resultSet.getString("telefone"));
+                vendedor.setComissao(resultSet.getDouble("comissao"));
 
                 lista.add(vendedor);
             }
@@ -168,6 +171,7 @@ public class VendedorDAO {
                 vendedor.setCpf(resultSet.getString("CPF"));
                 vendedor.setSalario(resultSet.getDouble("salario"));
                 vendedor.setTelefone(resultSet.getString("telefone"));
+                vendedor.setComissao(resultSet.getDouble("comissao"));
             }
 
             logger.info("--- Fim do método DAO Buscar por Id ---");

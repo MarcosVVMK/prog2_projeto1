@@ -35,41 +35,37 @@ public class CategoriaView extends JFrame {
 
         tabbedPane.addTab("Cadastro", panelCadastro);
 
-        JLabel lblID = new JLabel("ID");
-        lblID.setBounds(10, 10, 100, 25);
-        panelCadastro.add(lblID);
-
-        JTextField txtID = new JTextField();
-        txtID.setBounds(10, 30, 100, 25);
-        panelCadastro.add(txtID);
-
         JLabel lblNome = new JLabel("Nome");
-        lblNome.setBounds(10, 60, 150, 25);
+        lblNome.setBounds(10, 10, 150, 25);
         panelCadastro.add(lblNome);
 
+        JTextField txtID = new JTextField();
+        //txtID.setBounds(10, 30, 100, 25);
+        panelCadastro.add(txtID);
+
         JTextField txtNome = new JTextField();
-        txtNome.setBounds(10, 80, 100, 25);
+        txtNome.setBounds(10, 30, 250, 25);
         panelCadastro.add(txtNome);
 
-        JLabel lblDescricao = new JLabel("Descricao");
-        lblDescricao.setBounds(10, 100, 250, 25);
+        JLabel lblDescricao = new JLabel("Descrição");
+        lblDescricao.setBounds(10, 60, 250, 25);
         panelCadastro.add(lblDescricao);
 
         JTextField txtDescricao = new JTextField();
-        txtDescricao.setBounds(10, 120, 250, 25);
+        txtDescricao.setBounds(10, 80, 400, 25);
         panelCadastro.add(txtDescricao);
 
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.setBounds(10, 280, 150, 25);
         panelCadastro.add(btnSalvar);
 
-        JButton btnAlterar = new JButton("Alterar");
-        btnAlterar.setBounds(170, 280, 150, 25);
-        panelCadastro.add(btnAlterar);
+        JButton btnAtualizar = new JButton("Atualizar");
+        btnAtualizar.setBounds(170, 280, 150, 25);
+        panelCadastro.add(btnAtualizar);
 
-        JButton btnExcluir = new JButton("Excluir");
-        btnExcluir.setBounds(340, 280, 150, 25);
-        panelCadastro.add(btnExcluir);
+        JButton btnDeletar = new JButton("Deletar");
+        btnDeletar.setBounds(340, 280, 150, 25);
+        panelCadastro.add(btnDeletar);
 
         JButton btnLimparCampos = new JButton("Limpar Campos");
         btnLimparCampos.setBounds(510, 280, 150, 25);
@@ -92,7 +88,7 @@ public class CategoriaView extends JFrame {
             }
         });
 
-        btnAlterar.addActionListener(new ActionListener() {
+        btnAtualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Categoria categoria = new Categoria();
@@ -105,16 +101,16 @@ public class CategoriaView extends JFrame {
                 
                 boolean resultado = categoriaController.alterar(categoria);
                 if (resultado) {
-                    JOptionPane.showMessageDialog(tela, "Categoria salvo com sucesso!");
+                    JOptionPane.showMessageDialog(tela, "Categoria atualizada com sucesso!");
                 } else {
-                    JOptionPane.showMessageDialog(tela, "Erro ao salvar veículo!", "Erro",
+                    JOptionPane.showMessageDialog(tela, "Erro ao atualizar categoria!", "Erro",
                             JOptionPane.ERROR_MESSAGE);
                 }
 
             }
         });
 
-        btnExcluir.addActionListener(new ActionListener() {
+        btnDeletar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -126,9 +122,13 @@ public class CategoriaView extends JFrame {
                 
                 boolean resultado = categoriaController.excluir(categoria);
                 if (resultado) {
-                    JOptionPane.showMessageDialog(tela, "Categoria deletado com sucesso!");
+                    JOptionPane.showMessageDialog(tela, "Categoria deletada com sucesso!");
+                    // Limpar campos após deletar
+                    txtID.setText("");
+                    txtNome.setText("");
+                    txtDescricao.setText("");
                 } else {
-                    JOptionPane.showMessageDialog(tela, "Erro ao deletar veículo!", "Erro",
+                    JOptionPane.showMessageDialog(tela, "Erro ao deletar categoria!", "Erro",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }

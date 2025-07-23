@@ -47,7 +47,7 @@ public class VeiculoView {
         panelCadastro.add(txtID);
 
         JTextField txtNome = new JTextField();
-        txtNome.setBounds(10, 30, 100, 25);
+        txtNome.setBounds(10, 30, 200, 25);
         panelCadastro.add(txtNome);
 
         JLabel lblAno = new JLabel("Ano");
@@ -93,7 +93,7 @@ public class VeiculoView {
         panelCadastro.add(lblModelo);
 
         JTextField txtModelo = new JTextField();
-        txtModelo.setBounds(10, 130, 250, 25);
+        txtModelo.setBounds(10, 130, 300, 25);
         panelCadastro.add(txtModelo);
 
         JLabel lblCor = new JLabel("Cor");
@@ -101,31 +101,31 @@ public class VeiculoView {
         panelCadastro.add(lblCor);
 
         JTextField txtCor = new JTextField();
-        txtCor.setBounds(10, 180, 250, 25);
+        txtCor.setBounds(10, 180, 200, 25);
         panelCadastro.add(txtCor);
 
         JLabel lblPlaca = new JLabel("Placa");
-        lblPlaca.setBounds(10, 210, 250, 25);
+        lblPlaca.setBounds(220, 160, 250, 25);
         panelCadastro.add(lblPlaca);
 
         JTextField txtPlaca = new JTextField();
-        txtPlaca.setBounds(10, 230, 250, 25);
+        txtPlaca.setBounds(220, 180, 150, 25);
         panelCadastro.add(txtPlaca);
 
         JButton btnSalvar = new JButton("Salvar");
-        btnSalvar.setBounds(10, 280, 150, 25);
+        btnSalvar.setBounds(10, 230, 150, 25);
         panelCadastro.add(btnSalvar);
 
         JButton btnAtualizar = new JButton("Atualizar");
-        btnAtualizar.setBounds(330, 280, 150, 25);
+        btnAtualizar.setBounds(170, 230, 150, 25);
         panelCadastro.add(btnAtualizar);
 
-        JButton btnLimparCampos = new JButton("Limpar Campos");
-        btnLimparCampos.setBounds(170, 280, 150, 25);
-        panelCadastro.add(btnLimparCampos);
-
         JButton btnDeletar = new JButton("Deletar");
-        btnDeletar.setBounds(490, 280, 150, 25);
+        btnDeletar.setBounds(340, 230, 150, 25);
+        panelCadastro.add(btnDeletar);
+
+        JButton btnLimparCampos = new JButton("Limpar Campos");
+        btnLimparCampos.setBounds(510, 230, 150, 25);
         panelCadastro.add(btnDeletar);
 
         // Adiciona o panelCadastro ao tabbedPane
@@ -222,7 +222,6 @@ public class VeiculoView {
 
         // Aba 2 - Listagem de Veículos
         JPanel panelTabela = new JPanel();
-
         panelTabela.setLayout(new BoxLayout(panelTabela, BoxLayout.Y_AXIS));
 
         String[] colunas = { "ID", "Nome", "Ano", "Modelo", "Cor", "Placa" };
@@ -232,17 +231,19 @@ public class VeiculoView {
         JScrollPane scrollPane = new JScrollPane(tabela);
         panelTabela.add(scrollPane);
 
-        JButton btnRecarregar = new JButton("Recarregar Dados");
-        panelTabela.add(btnRecarregar);
+        tabbedPane.addChangeListener(e -> {
+            int selectedIndex = tabbedPane.getSelectedIndex();
+            String selectedTitle = tabbedPane.getTitleAt(selectedIndex);
 
-        btnRecarregar.addActionListener(e -> {
-            modeloTabela.setRowCount(0); // Limpa os dados antigos
-            VeiculoController veiculoController = new VeiculoController();
-            List<Veiculo> veiculos = veiculoController.buscarTodos();
-            for (Veiculo v : veiculos) {
-                modeloTabela.addRow(new Object[] {
-                        v.getId(), v.getNome(), v.getAno(), v.getModelo(), v.getCor(), v.getPlaca()
-                });
+            if ("Lista de Veículos".equals(selectedTitle)) {
+                modeloTabela.setRowCount(0);
+                VeiculoController veiculoController = new VeiculoController();
+                List<Veiculo> veiculos = veiculoController.buscarTodos();
+                for (Veiculo v : veiculos) {
+                    modeloTabela.addRow(new Object[] {
+                            v.getId(), v.getNome(), v.getAno(), v.getModelo(), v.getCor(), v.getPlaca()
+                    });
+                }
             }
         });
 
